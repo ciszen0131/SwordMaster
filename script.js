@@ -20,8 +20,9 @@ image.onload = () => {
 
 // 이미지 변경 함수
 function strengthen() {
-  currentIndex = (currentIndex + 1) % imagelist.length;
-  image.src = `assets/${imagelist[currentIndex]}`;
+  
+  currentIndex = currentIndex + 1;
+  image.src = `에셋/${imagelist[currentIndex]}`;
   image.onload = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // 캔버스 클리어
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
