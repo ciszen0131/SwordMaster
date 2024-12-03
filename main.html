@@ -8,8 +8,19 @@
 </head>
 <body>
   <div class="container">
+    <!-- 캔버스 -->
     <canvas id="imageCanvas"></canvas>
-    <button id="switchButton" onclick = "strengthen()">강화하기</button>
+
+    <!-- 버튼 -->
+    <button id="switchButton" onclick="strengthen()">강화하기</button>
+    <button id="GotoTraining" onclick="openTraining()">훈련장</button>
+
+    <!-- 모달과 오버레이 -->
+    <div id="overlay" onclick="closeTraining()"></div>
+    <div id="modal">
+      <p>훈련장에 오신 것을 환영합니다!</p>
+      <button onclick="closeTraining()">닫기</button>
+    </div>
   </div>
   <script src="script.js"></script>
 </body>
