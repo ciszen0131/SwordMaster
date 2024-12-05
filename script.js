@@ -63,6 +63,11 @@ function closeTraining() {
 }
 
 function openShop() {
-  document.getElementById("shop").style.display = "block";
-  document.getElementById("overlay").style.display = "block";
+  document.getElementById("modal2").style.display = "block";
+  document.getElementById("overlay2").style.display = "block";
+}
+
+function closeShop() {
+  document.getElementById("modal2").style.display = "none";
+  document.getElementById("overlay2").style.display = "none";
 }
