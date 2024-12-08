@@ -19,11 +19,14 @@
     <button id="GotoTraining" onclick="openTraining()">훈련장</button>
     <button id="GotoShop" onclick="openShop()">상점</button>
 
-    <!-- 모달과 오버레이 -->
-    <div id="overlay" onclick="closeTraining()"></div>
     <div id="modal">
       <p id="welcome">훈련장에 오신 것을 환영합니다!</p>
       <button id="close" onclick="closeTraining()">닫기</button>
+      <button id="swing">Swing</button>
+      <div id="canvas-container">
+        <canvas id="husuabi" width="620" height="500"></canvas>
+        <canvas id="swingCanvas" width="620" height="500"></canvas>
+      </div>
     </div>
 
     <!-- 샵과 오버레이2-->

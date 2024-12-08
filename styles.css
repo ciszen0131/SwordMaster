@@ -13,9 +13,9 @@
   }
 
   /* 캔버스 스타일 */
-  canvas {
+  #imageCanvas {
     border: 1px solid #ccc; /* 캔버스 테두리 */
-    display: block;
+    display: inline-block;
     margin: 0 auto;
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -45,8 +45,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     background: white;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -54,14 +54,35 @@
     z-index: 1000;
     text-align: center;
   }
+  
+/* 캔버스 컨테이너 */
+#canvas-container {
+  position: relative; /* 캔버스들을 겹치도록 설정 */
+  width: 620px; /* 캔버스 너비 */
+  height: 500px; /* 캔버스 높이 */
+  background-color: white; /* 필요시 배경 색 설정 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+  border-radius: 10px; /* 모서리 둥글게 */
+  margin-left: 460px;
+}
+
+/* 허수아비와 스윙 캔버스 스타일 */
+#husuabi,
+#swingCanvas {
+  position: absolute; /* 캔버스를 겹치도록 설정 */
+  top: 0;
+  left: 0;
+  width: 100%; /* 캔버스 컨테이너에 맞춤 */
+  height: 100%; /* 캔버스 컨테이너에 맞춤 */
+}
 
   #overlay {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
   }
@@ -136,3 +157,4 @@
   #welcome {
     font-size: 30px;
   }
+  
