@@ -62,6 +62,90 @@ function closeTraining() {
   document.getElementById("overlay").style.display = "none";
 }
 
+// 첫 번째 캔버스와 컨텍스트 초기화
+const canvas1 = document.getElementById('husuabi');
+const ctx1 = canvas1.getContext('2d');
+
+// 두 번째 캔버스와 컨텍스트 초기화
+const canvas2 = document.getElementById('swingCanvas');
+const ctx2 = canvas2.getContext('2d');
+
+// 허수아비 이미지 객체 생성
+const husuabiImage = new Image();
+
+// 허수아비 이미지 로드 이벤트
+husuabiImage.onload = () => {
+  drawTrainingCanvas();
+};
+
+// 이미지 경로 설정 (캐시 방지)
+husuabiImage.src = `허수아비.png`;
+
+// 허수아비 캔버스 그리기 함수
+function drawTrainingCanvas() {
+  const gap = 100; // 허수아비 간격
+  const imageHeight = 350; // 허수아비 높이
+  const aspectRatio = husuabiImage.width / husuabiImage.height;
+  const imageWidth = imageHeight * aspectRatio;
+
+  const secondHusuabiX = canvas1.width / 2 - imageWidth / 2;
+  const firstHusuabiX = secondHusuabiX - (imageWidth + gap);
+
+  ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+  for (let i = 0; i < 3; i++) {
+    const x = firstHusuabiX + i * (imageWidth + gap);
+    ctx1.drawImage(husuabiImage, x, 75, imageWidth, imageHeight);
+  }
+}
+
+let EndingItem = 0; // 애니메이션 결과값 저장 변수
+
+// Swing 애니메이션
+const swingImage = new Image(); // Swing 애니메이션에 사용할 이미지
+swingImage.src = `에셋/${imagelist[currentIndex]}`;
+
+let posX, posY;
+const targetX = -400; // 애니메이션이 멈출 위치
+
+function initSwingAnimation() {
+  posX = canvas1.width + 100; // 애니메이션 시작 위치
+  posY = canvas1.height / 2 - 100; // 허수아비 중앙 기준 (높이 200px 중심)
+}
+
+function swingAnimation() {
+  // 캔버스 전체를 지워 지나간 부분을 제거
+  ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+
+  // 2.png 이미지 그리기
+  ctx2.drawImage(swingImage, posX, posY, 300, 200);
+
+  // 이미지 위치 이동
+  posX -= 60; // 속도 조정
+
+  // 애니메이션 계속 실행
+  if (posX > targetX) {
+    requestAnimationFrame(swingAnimation);
+  } else {
+    // 애니메이션 종료 시 마지막 위치를 지움
+    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+
+    // EndingItem 확률 결정
+    const successRate = currentIndex; // 확률은 currentIndex 값으로 결정
+    if (Math.random() * 100 < successRate) {
+      EndingItem += 1; // 성공 시 EndingItem 증가
+      alert(`축하합니다! 광제쌤의 편린을 획득했습니다. 현재 편린 개수: ${EndingItem}`);
+    }
+  }
+}
+
+// Swing 버튼 클릭 이벤트
+document.getElementById('swing').addEventListener('click', () => {
+  initSwingAnimation(); // 애니메이션 시작 위치 초기화
+  swingAnimation(); // 애니메이션 실행
+});
+
+
+
 function openShop() {
   document.getElementById("modal2").style.display = "block";
   document.getElementById("overlay2").style.display = "block";
