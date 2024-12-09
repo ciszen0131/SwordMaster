@@ -8,10 +8,11 @@
 </head>
 <body>
   <div class="container">
-    <h1>4반 키우기</h1>
+    <h1 id="title">4반 키우기</h1>
     <!-- 캔버스 -->
     <canvas id="imageCanvas"></canvas>
-    <h1 id="imageName">+2 원영이의 방사능 홍차</h1>
+    <h3 id="currentCash">현재 보유중인 금액 : </div>
+    <h1 id="imageName"></h1>
     <br>
     <h2 id="result"></h2>
     <!-- 버튼 -->
@@ -30,6 +31,7 @@
     <div id="overlay2" onclick="closeShop()"></div>
     <div id="modal2">
       <p id="welcome">상점에 오신 것을 환영합니다!</p>
+      
       <button id="close" onclick="closeShop()">닫기</button>
   </div>
   <script src="script.js"></script>
