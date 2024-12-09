@@ -72,32 +72,40 @@ const ctx2 = canvas2.getContext('2d');
 
 // 허수아비 이미지 객체 생성
 const husuabiImage = new Image();
-
-// 허수아비 이미지 로드 이벤트
-husuabiImage.onload = () => {
-  drawTrainingCanvas();
-};
-
-// 이미지 경로 설정 (캐시 방지)
-husuabiImage.src = `허수아비.png`;
+husuabiImage.src = '허수아비.png';
 
 // 허수아비 캔버스 그리기 함수
 function drawTrainingCanvas() {
-  const gap = 100; // 허수아비 간격
-  const imageHeight = 350; // 허수아비 높이
+  const maxGap = 100; // 최대 간격
+  const minGap = 30; // 최소 간격 (화면이 작을 경우)
+  const gap = Math.min(maxGap, Math.max(minGap, canvas1.width / 12)); // 동적 간격 계산
+
+  const imageHeight = canvas1.height * 0.7; // 이미지 높이를 캔버스 높이의 70%로 설정
   const aspectRatio = husuabiImage.width / husuabiImage.height;
-  const imageWidth = imageHeight * aspectRatio;
+  const imageWidth = imageHeight * aspectRatio; // 비율에 맞춘 이미지 너비
 
-  const secondHusuabiX = canvas1.width / 2 - imageWidth / 2;
-  const firstHusuabiX = secondHusuabiX - (imageWidth + gap);
+  const secondHusuabiX = canvas1.width / 2 - imageWidth / 2; // 두 번째 허수아비의 X 좌표
+  const firstHusuabiX = secondHusuabiX - (imageWidth + gap); // 첫 번째 허수아비의 X 좌표
 
-  ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+  ctx1.clearRect(0, 0, canvas1.width, canvas1.height); // 캔버스 초기화
+
   for (let i = 0; i < 3; i++) {
-    const x = firstHusuabiX + i * (imageWidth + gap);
-    ctx1.drawImage(husuabiImage, x, 75, imageWidth, imageHeight);
+    const x = firstHusuabiX + i * (imageWidth + gap); // 동적 간격을 기반으로 위치 계산
+    ctx1.drawImage(husuabiImage, x, canvas1.height * 0.15, imageWidth, imageHeight);
   }
 }
 
+// 화면 크기 변경 시 크기 업데이트 및 허수아비 다시 그리기
+function setCanvasSize() {
+  const container = document.getElementById('canvas-container');
+  canvas1.width = container.offsetWidth; // 컨테이너 너비에 맞춤
+  canvas1.height = container.offsetHeight; // 컨테이너 높이에 맞춤
+  drawTrainingCanvas(); // 허수아비 다시 그리기
+}
+
+// 초기 설정
+husuabiImage.onload = setCanvasSize;
+window.addEventListener('resize', setCanvasSize); // 화면 크기 변경 시 크기 업데이트
 let EndingItem = 0; // 애니메이션 결과값 저장 변수
 
 // Swing 애니메이션
@@ -108,19 +116,28 @@ let posX, posY;
 const targetX = -400; // 애니메이션이 멈출 위치
 
 function initSwingAnimation() {
-  posX = canvas1.width + 100; // 애니메이션 시작 위치
-  posY = canvas1.height / 2 - 100; // 허수아비 중앙 기준 (높이 200px 중심)
+  const container = document.getElementById('canvas-container');
+  
+  // 캔버스 크기와 중앙 기준 설정
+  posX = container.offsetWidth + 100; // 컨테이너 너비 기준 시작 위치
+  posY = container.offsetHeight / 2 - 40; // 허수아비 중앙 기준 (높이 80px 중심)
 }
 
 function swingAnimation() {
+  const container = document.getElementById('canvas-container');
+  
+  // 캔버스 크기를 container에 맞게 설정
+  canvas2.width = container.offsetWidth;
+  canvas2.height = container.offsetHeight;
+
   // 캔버스 전체를 지워 지나간 부분을 제거
   ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
 
-  // 2.png 이미지 그리기
-  ctx2.drawImage(swingImage, posX, posY, 300, 200);
+  // Swing 이미지 그리기
+  ctx2.drawImage(swingImage, posX, posY, 150, 100);
 
   // 이미지 위치 이동
-  posX -= 60; // 속도 조정
+  posX -= 50; // 속도 조정 (더 빠르게 이동)
 
   // 애니메이션 계속 실행
   if (posX > targetX) {
@@ -130,13 +147,19 @@ function swingAnimation() {
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
 
     // EndingItem 확률 결정
-    const successRate = currentIndex; // 확률은 currentIndex 값으로 결정
+    const successRate = currentIndex/10;
     if (Math.random() * 100 < successRate) {
       EndingItem += 1; // 성공 시 EndingItem 증가
       alert(`축하합니다! 광제쌤의 편린을 획득했습니다. 현재 편린 개수: ${EndingItem}`);
     }
   }
 }
+
+// Swing 버튼 클릭 이벤트
+document.getElementById('swing').addEventListener('click', () => {
+  initSwingAnimation(); // 애니메이션 시작 위치 초기화
+  swingAnimation(); // 애니메이션 실행
+});
 
 // Swing 버튼 클릭 이벤트
 document.getElementById('swing').addEventListener('click', () => {
