@@ -23,9 +23,9 @@
 
   /* 버튼 스타일 */
   button {
-    margin-top: 20px;
+    margin: 10px 5px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 15spx;
     cursor: pointer;
     background-color: #007BFF;
     color: white;
@@ -135,4 +135,24 @@
 
   #welcome {
     font-size: 30px;
+  }
+
+  #currentCash {
+    position: absolute;
+    left: 7%;
+    top: 40%;
+    font-size: 20px;
+  }
+
+  #title {
+    font-size: 40px;
+    position: absolute;
+    margin: -20px 10px;
+  }
+
+  #currentImage {
+    position: absolute;
+    left: 7%;
+    top: 50%;
+    font-size: 20px;
   }
