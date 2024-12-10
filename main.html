@@ -11,7 +11,11 @@
     <h1 id="title">4반 키우기</h1>
     <!-- 캔버스 -->
     <canvas id="imageCanvas"></canvas>
-    <h3 id="currentCash">현재 보유중인 금액 : </div>
+    <h3 id="currentCash">현재 보유중인 금액 : 500원</h3>
+    <h3 id="currentProtection">현재 보유중인 방지권 개수 : 0</h3>
+    <h3 id="forcePercentage">강화 확률 : 100%</h3>
+    <h3 id="upgradeCost">강화 비용 : 300원</h3>
+    <h3 id="sellCost">판매 가격 : 0원</h3>
     <h1 id="imageName"></h1>
     <br>
     <h2 id="result"></h2>
@@ -19,6 +23,7 @@
     <button id="switchButton" onclick="strengthen()">강화하기</button>
     <button id="GotoTraining" onclick="openTraining()">훈련장</button>
     <button id="GotoShop" onclick="openShop()">상점</button>
+    <button onclick="sell()">판매</button>
 
     <!-- 모달과 오버레이 -->
     <div id="overlay" onclick="closeTraining()"></div>
