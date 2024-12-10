@@ -50,6 +50,7 @@ const weaponUpgradeAndSell = [
 
 let currentIndex = 0;
 let currentProtection = 0;
+let recentIndex;
 // 현재 금액
 let currentCash = 1000000;
 // 이미지 객체 생성
@@ -72,6 +73,7 @@ function strengthen() {
         currentIndex++;
         document.getElementById("result").textContent = "강화 성공!";
       } else {
+        recentIndex = currentIndex;
         currentIndex = 0;  // 실패 시 1단계로 돌아감
         document.getElementById("result").textContent = "강화 실패!";
       }
@@ -107,7 +109,6 @@ function closeTraining() {
 }
 
 function openShop() {
-  alert(currentIndex)
   if (currentIndex === 0) {
     document.getElementById("modal2").style.display = "block";
     document.getElementById("overlay2").style.display = "block";
@@ -138,9 +139,8 @@ function toggleShopButton() {
   shopButton.addEventListener('click', function() {
     if (currentIndex !== 0) {
       shopButton.disabled = true;
-      alert("1단계일 때만 상점으로 이동할 수 있습니다.");
-      shopButton.disabled = false;
     }
+    shopButton.disabled = false;
   });
 
   // 1단계일 때만 버튼 활성화
@@ -167,4 +167,19 @@ function sell(){
   currentIndex = 0;
   loadImage(currentIndex);
   update();
+}
+
+function protection(){
+  if (recentIndex){
+    if (currentProtection < requireProtection[recentIndex]){
+      alert("보유 방지권이 부족합니다.");
+      return;
+    }else{
+      currentIndex = recentIndex;
+      currentProtection -= requireProtection[currentIndex];
+      loadImage(currentIndex);
+      update();
+      recentIndex = 0;
+    }
+  }
 }
