@@ -50,6 +50,7 @@ const weaponUpgradeAndSell = [
 
 let currentIndex = 0;
 let currentProtection = 0;
+// 현재 금액
 let currentCash = 1000000;
 // 이미지 객체 생성
 const image = new Image();
