@@ -20,6 +20,7 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+<<<<<<< Updated upstream
 /* 버튼 스타일 */
 button {
   margin-top: 20px;
@@ -32,6 +33,20 @@ button {
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
+=======
+  /* 버튼 스타일 */
+  button {
+    margin: 10px 5px;
+    padding: 10px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+>>>>>>> Stashed changes
 
 button:hover {
   background-color: #0056b3;
@@ -120,6 +135,7 @@ height: 100%; /* 캔버스 컨테이너에 맞춤 */
   z-index: 999;
 }
 
+<<<<<<< Updated upstream
 /* 모달 내 버튼 스타일 */
 #modal button {
   margin-top: 20px;
@@ -131,6 +147,21 @@ height: 100%; /* 캔버스 컨테이너에 맞춤 */
   border-radius: 5px;
   cursor: pointer;
 }
+=======
+  #buyone {
+    width: 30%;
+    height: 30%;
+  }
+
+  #buytriple {
+    width: 30%;
+    height: 30%;
+  }
+
+  #modal2 button:hover {
+    background-color: #C70039;
+  }
+>>>>>>> Stashed changes
 
 #modal button:hover {
   background-color: #C70039;
@@ -164,9 +195,41 @@ height: 100%; /* 캔버스 컨테이너에 맞춤 */
   cursor: pointer;
 }
 
+<<<<<<< Updated upstream
 #modal2 button:hover {
   background-color: #C70039;
 }
+=======
+  #currentProtection {
+    position: absolute;
+    left: 7%;
+    top: 45%;
+    font-size: 20px;
+  }
+  #forcePercentage {
+    position: absolute;
+    left: 7%;
+    top: 55%;
+    font-size: 20px;
+  }
+  #upgradeCost {
+    position: absolute;
+    left: 7%;
+    top: 60%;
+    font-size: 20px;
+  }
+  #sellCost {
+    position: absolute;
+    left: 7%;
+    top: 65%;
+    font-size: 20px;
+  }
+  #title {
+    font-size: 40px;
+    position: absolute;
+    margin: -20px 10px;
+  }
+>>>>>>> Stashed changes
 
 #overlay2 {
   display: none;
