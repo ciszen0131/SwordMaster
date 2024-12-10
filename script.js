@@ -50,6 +50,7 @@ const weaponUpgradeAndSell = [
 
 let currentIndex = 0;
 let currentProtection = 0;
+let recentIndex;
 // 현재 금액
 let currentCash = 1000000;
 // 이미지 객체 생성
@@ -72,6 +73,7 @@ function strengthen() {
         currentIndex++;
         document.getElementById("result").textContent = "강화 성공!";
       } else {
+        recentIndex = currentIndex;
         currentIndex = 0;  // 실패 시 1단계로 돌아감
         document.getElementById("result").textContent = "강화 실패!";
       }
@@ -167,4 +169,19 @@ function sell(){
   currentIndex = 0;
   loadImage(currentIndex);
   update();
+}
+
+function protection(){
+  if (recentIndex){
+    if (currentProtection < requireProtection[recentIndex]){
+      alert("보유 방지권이 부족합니다.");
+      return;
+    }else{
+      currentIndex = recentIndex;
+      currentProtection -= requireProtection[currentIndex];
+      loadImage(currentIndex);
+      update();
+      recentIndex = 0;
+    }
+  }
 }
